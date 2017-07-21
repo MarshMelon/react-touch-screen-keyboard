@@ -200,6 +200,7 @@ export default class Keyboard extends PureComponent {
 						<KeyboardButton
 							value={button}
 							onClick={this.handleLetterButtonClick}
+							classes={"keyboard-numberButton"}
 							key={button}
 						/>
 					)}
@@ -211,6 +212,7 @@ export default class Keyboard extends PureComponent {
 							value={button}
 							onClick={this.handleLetterButtonClick}
 							key={button}
+							classes={"keyboard-numberButton"}
 						/>
 					)}
 				</div>
@@ -226,6 +228,7 @@ export default class Keyboard extends PureComponent {
 							value={button}
 							onClick={this.handleLetterButtonClick}
 							key={button}
+							classes={"keyboard-numberButton"}
 						/>
 					)}
 					<KeyboardButton
