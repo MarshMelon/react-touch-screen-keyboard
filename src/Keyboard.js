@@ -192,6 +192,7 @@ export default class Keyboard extends PureComponent {
 					<KeyboardButton
 						value={<BackspaceIcon />}
 						onClick={this.handleBackspaceClick}
+						classes={'eyboard-IconBack'}
 					/>
 				</div>
 
