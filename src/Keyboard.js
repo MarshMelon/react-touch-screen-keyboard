@@ -44,10 +44,6 @@ export default class Keyboard extends PureComponent {
 		};
 	}
 
-	handleLanguageClick() {
-		this.setState({currentLanguage: this.state.currentLanguage === this.props.defaultKeyboard ? this.props.secondaryKeyboard : this.props.defaultKeyboard });
-	}
-
 	clearInput() {
 		const {inputNode} = this.props;
 
@@ -168,7 +164,7 @@ export default class Keyboard extends PureComponent {
 	}
 
 	render() {
-		const {rightButtons, inputNode, secondaryKeyboard} = this.props;
+		const {rightButtons, inputNode} = this.props;
 		const keys = this.getKeys();
 		const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 		const symbolsKeyValue = this.getSymbolsKeyValue();
