@@ -2,9 +2,9 @@ import React, {PureComponent, PropTypes} from 'react';
 import KeyboardButton from './KeyboardButton';
 
 import LatinLayout from './layouts/LatinLayout';
+import LatinExtended from './layouts/LatinExtended';
 import CyrillicLayout from './layouts/CyrillicLayout';
 import SymbolsLayout from './layouts/SymbolsLayout';
-import LatinExtended from './layouts/LatinExtended';
 import GermanLayout from './layouts/GermanLayout';
 
 import BackspaceIcon from './icons/BackspaceIcon';
@@ -43,6 +43,7 @@ export default class Keyboard extends PureComponent {
 		};
 	}
 
+
 	clearInput() {
 		const {inputNode} = this.props;
 
@@ -68,15 +69,15 @@ export default class Keyboard extends PureComponent {
 	handleLetterButtonClick(key) {
 		const {inputNode} = this.props;
 		const {value} = inputNode;
-		let selectionStart;
-		let selectionEnd;
-		try {
-			selectionStart = inputNode.selectionStart;
-			selectionEnd = inputNode.selectionEnd;
-		} catch (e) {
-			selectionStart = value.length;
-			selectionEnd = value.length;
-		}
+                let selectionStart;
+                let selectionEnd;
+                try {
+                        selectionStart = inputNode.selectionStart;
+                        selectionEnd = inputNode.selectionEnd;
+                } catch (e) {
+                        selectionStart = value.length;
+                        selectionEnd = value.length;
+                }
 		const nextValue = value.substring(0, selectionStart) + key + value.substring(selectionEnd);
 
 		inputNode.value = nextValue;
@@ -96,22 +97,22 @@ export default class Keyboard extends PureComponent {
 	isUppercase() {
 		const {inputNode, isFirstLetterUppercase} = this.props;
 		return inputNode.type !== 'password' &&
-		inputNode.dataset.type !== 'email' &&
-		!inputNode.value.length && isFirstLetterUppercase;
+			inputNode.dataset.type !== 'email' &&
+			!inputNode.value.length && isFirstLetterUppercase;
 	}
 
 	handleBackspaceClick() {
 		const {inputNode} = this.props;
-		const {value} = inputNode;
-		let selectionStart;
-		let selectionEnd;
-		try {
-			selectionStart = inputNode.selectionStart;
-			selectionEnd = inputNode.selectionEnd;
-		} catch (e) {
-			selectionStart = 0;
-			selectionEnd = value.length;
-		}
+                const {value} = inputNode;
+                let selectionStart;
+                let selectionEnd;
+                try {
+                        selectionStart = inputNode.selectionStart;
+                        selectionEnd = inputNode.selectionEnd;
+                } catch (e) {
+                        selectionStart = 0;
+                        selectionEnd = value.length;
+                }
 
 		let nextValue;
 		let nextSelectionPosition;
@@ -142,12 +143,19 @@ export default class Keyboard extends PureComponent {
 		let keysSet;
 		if (this.state.showSymbols) {
 			keysSet = LatinExtended;
-		} else if(this.state.currentLanguage === 'cs') {
+		} else if (this.state.currentLanguage === 'cs') {
+			keysSet = LatinLayout;
+		} else if (this.state.currentLanguage === 'de') {
+			keysSet = GermanLayout;
+		} else if (this.state.currentLanguage === 'ru') {
+			keysSet = CyrillicLayout;
+		} else {
 			keysSet = LatinLayout;
 		}
+
 		return this.state.uppercase ?
-		keysSet.map(keyRow => keyRow.map(key => key.toUpperCase()))
-		: keysSet;
+			keysSet.map(keyRow => keyRow.map(key => key.toUpperCase()))
+			: keysSet;
 	}
 
 	getSymbolsKeyValue() {
@@ -156,6 +164,8 @@ export default class Keyboard extends PureComponent {
 			symbolsKeyValue = 'Žšč';
 		} else if (this.state.currentLanguage === 'cs') {
 			symbolsKeyValue = 'Abc';
+		} else if (this.state.currentLanguage === 'ru') {
+			symbolsKeyValue = 'Абв';
 		} else {
 			symbolsKeyValue = 'Abc';
 		}
