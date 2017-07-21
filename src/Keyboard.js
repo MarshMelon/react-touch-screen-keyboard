@@ -147,16 +147,9 @@ export default class Keyboard extends PureComponent {
 		let keysSet;
 		if (this.state.showSymbols) {
 			keysSet = LatinExtended;
-		} else if (this.state.currentLanguage === 'cs') {
-			keysSet = LatinLayout;
-		} else if (this.state.currentLanguage === 'de') {
-			keysSet = GermanLayout;
-		} else if (this.state.currentLanguage === 'ru') {
-			keysSet = CyrillicLayout;
-		} else {
+		} else if(this.state.currentLanguage === 'cs') {
 			keysSet = LatinLayout;
 		}
-
 		return this.state.uppercase ?
 		keysSet.map(keyRow => keyRow.map(key => key.toUpperCase()))
 		: keysSet;
@@ -232,18 +225,17 @@ export default class Keyboard extends PureComponent {
 					)}
 					<KeyboardButton
 						classes="shift-symbols"
-						value={symbolsKeyValue}
-						onClick={this.handleSymbolsClick}
+						value={<ShiftIcon />}
+						onClick={this.handleShiftClick}
 					/>
 				</div>
 
 				<div className="keyboard-row">
-					{typeof secondaryKeyboard !== 'undefined' ?
 					<KeyboardButton
-						value={<LanguageIcon />}
-						onClick={this.handleLanguageClick}
+						classes="shift-symbols"
+						value={symbolsKeyValue}
+						onClick={this.handleSymbolsClick}
 					/>
-					: null}
 					{inputNode.dataset.type === 'email' ?
 					<KeyboardButton
 						value={'@'}
