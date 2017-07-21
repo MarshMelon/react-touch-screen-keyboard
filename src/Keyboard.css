@@ -19,7 +19,6 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	flex-basis: 100px;
 	font-size: 18px;
 	height: 60px;
 	border-radius: 4px;
@@ -43,7 +42,7 @@
 }
 
 .keyboard-numberButton {
-	flex-grow: 1;
+	flex:1;
 }
 
 .keyboard-halfButton {
@@ -51,7 +50,7 @@
 }
 
 .keyboard-space {
-	flex-grow: 1;
+	flex:1;
 }
 
 .keyboard-utilButton {
@@ -74,10 +73,14 @@
 	position:fixed;
 	bottom: 0;
 	z-index: 10000;
-	width: 700px;
-	left: calc(50% - 350px);
+	width: 100%;
+	left:(50%);
+	transform: translateX(-50%);
 }
 
 .keyboard-button.shift-symbols {
-	flex-basis: 210px;
+	flex: 2;
+}
+.keyboard-button.shift-diakritik {
+	flex: 2;
 }

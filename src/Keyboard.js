@@ -237,7 +237,7 @@ export default class Keyboard extends PureComponent {
 
 				<div className="keyboard-row">
 					<KeyboardButton
-						classes="shift-symbols"
+						classes="shift-diakritik"
 						value={symbolsKeyValue}
 						onClick={this.handleSymbolsClick}
 					/>
