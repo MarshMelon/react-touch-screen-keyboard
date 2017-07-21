@@ -165,11 +165,9 @@ export default class Keyboard extends PureComponent {
 	getSymbolsKeyValue() {
 		let symbolsKeyValue;
 		if (!this.state.showSymbols) {
-			symbolsKeyValue = 'žšč';
-		} else if (this.state.currentLanguage === 'cs' || this.state.currentLanguage === 'de') {
+			symbolsKeyValue = 'Žšč';
+		} else if (this.state.currentLanguage === 'cs') {
 			symbolsKeyValue = 'Abc';
-		} else if (this.state.currentLanguage === 'ru') {
-			symbolsKeyValue = 'Абв';
 		} else {
 			symbolsKeyValue = 'Abc';
 		}
