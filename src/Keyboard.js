@@ -4,6 +4,7 @@ import KeyboardButton from './KeyboardButton';
 import LatinLayout from './layouts/LatinLayout';
 import CyrillicLayout from './layouts/CyrillicLayout';
 import SymbolsLayout from './layouts/SymbolsLayout';
+import LatinExtended from './layouts/LatinExtended';
 import GermanLayout from './layouts/GermanLayout';
 
 import BackspaceIcon from './icons/BackspaceIcon';
@@ -24,7 +25,7 @@ export default class Keyboard extends PureComponent {
 	static defaultProps = {
 		rightButtons: [],
 		isFirstLetterUppercase: false,
-		defaultKeyboard: 'us',
+		defaultKeyboard: 'cs',
 	};
 
 	constructor(props) {
@@ -72,15 +73,15 @@ export default class Keyboard extends PureComponent {
 	handleLetterButtonClick(key) {
 		const {inputNode} = this.props;
 		const {value} = inputNode;
-                let selectionStart;
-                let selectionEnd;
-                try {
-                        selectionStart = inputNode.selectionStart; 
-                        selectionEnd = inputNode.selectionEnd;
-                } catch (e) {
-                        selectionStart = value.length;
-                        selectionEnd = value.length;
-                }
+		let selectionStart;
+		let selectionEnd;
+		try {
+			selectionStart = inputNode.selectionStart;
+			selectionEnd = inputNode.selectionEnd;
+		} catch (e) {
+			selectionStart = value.length;
+			selectionEnd = value.length;
+		}
 		const nextValue = value.substring(0, selectionStart) + key + value.substring(selectionEnd);
 
 		inputNode.value = nextValue;
@@ -100,22 +101,22 @@ export default class Keyboard extends PureComponent {
 	isUppercase() {
 		const {inputNode, isFirstLetterUppercase} = this.props;
 		return inputNode.type !== 'password' &&
-			inputNode.dataset.type !== 'email' &&
-			!inputNode.value.length && isFirstLetterUppercase;
+		inputNode.dataset.type !== 'email' &&
+		!inputNode.value.length && isFirstLetterUppercase;
 	}
 
 	handleBackspaceClick() {
 		const {inputNode} = this.props;
-                const {value} = inputNode;
-                let selectionStart;
-                let selectionEnd;
-                try {
-                        selectionStart = inputNode.selectionStart; 
-                        selectionEnd = inputNode.selectionEnd;
-                } catch (e) {
-                        selectionStart = 0;
-                        selectionEnd = value.length;
-                }
+		const {value} = inputNode;
+		let selectionStart;
+		let selectionEnd;
+		try {
+			selectionStart = inputNode.selectionStart;
+			selectionEnd = inputNode.selectionEnd;
+		} catch (e) {
+			selectionStart = 0;
+			selectionEnd = value.length;
+		}
 
 		let nextValue;
 		let nextSelectionPosition;
@@ -145,8 +146,8 @@ export default class Keyboard extends PureComponent {
 	getKeys() {
 		let keysSet;
 		if (this.state.showSymbols) {
-			keysSet = SymbolsLayout;
-		} else if (this.state.currentLanguage === 'us') {
+			keysSet = LatinExtended;
+		} else if (this.state.currentLanguage === 'cs') {
 			keysSet = LatinLayout;
 		} else if (this.state.currentLanguage === 'de') {
 			keysSet = GermanLayout;
@@ -157,15 +158,15 @@ export default class Keyboard extends PureComponent {
 		}
 
 		return this.state.uppercase ?
-			keysSet.map(keyRow => keyRow.map(key => key.toUpperCase()))
-			: keysSet;
+		keysSet.map(keyRow => keyRow.map(key => key.toUpperCase()))
+		: keysSet;
 	}
 
 	getSymbolsKeyValue() {
 		let symbolsKeyValue;
 		if (!this.state.showSymbols) {
-			symbolsKeyValue = '.?!&';
-		} else if (this.state.currentLanguage === 'us' || this.state.currentLanguage === 'de') {
+			symbolsKeyValue = 'žšč';
+		} else if (this.state.currentLanguage === 'cs' || this.state.currentLanguage === 'de') {
 			symbolsKeyValue = 'Abc';
 		} else if (this.state.currentLanguage === 'ru') {
 			symbolsKeyValue = 'Абв';
@@ -240,16 +241,16 @@ export default class Keyboard extends PureComponent {
 
 				<div className="keyboard-row">
 					{typeof secondaryKeyboard !== 'undefined' ?
-						<KeyboardButton
-							value={<LanguageIcon />}
-							onClick={this.handleLanguageClick}
-						/>
+					<KeyboardButton
+						value={<LanguageIcon />}
+						onClick={this.handleLanguageClick}
+					/>
 					: null}
 					{inputNode.dataset.type === 'email' ?
-						<KeyboardButton
-							value={'@'}
-							onClick={this.handleLetterButtonClick}
-						/>
+					<KeyboardButton
+						value={'@'}
+						onClick={this.handleLetterButtonClick}
+					/>
 					: null}
 					<KeyboardButton
 						value={' '}
@@ -257,10 +258,10 @@ export default class Keyboard extends PureComponent {
 						onClick={this.handleLetterButtonClick}
 					/>
 					{inputNode.dataset.type === 'email' ?
-						<KeyboardButton
-							value={'.'}
-							onClick={this.handleLetterButtonClick}
-						/>
+					<KeyboardButton
+						value={'.'}
+						onClick={this.handleLetterButtonClick}
+					/>
 					: null}
 					<KeyboardButton
 						value={'↧'}

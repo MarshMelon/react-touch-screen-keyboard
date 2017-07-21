@@ -35,9 +35,9 @@ class KeyboardedInput extends React.Component {
   handleFocusLost(event) {
     var that = this;
     setTimeout(function(){
-       if (!document.activeElement.classList.contains("keyboard-button") && !document.activeElement.classList.contains("keyboard") && !document.activeElement.classList.contains("keyboard-row")) {
-         that.setState({...that.state, showKeyboard: false});
-       }
+      if (!document.activeElement.classList.contains("keyboard-button") && !document.activeElement.classList.contains("keyboard") && !document.activeElement.classList.contains("keyboard-row")) {
+        that.setState({...that.state, showKeyboard: false});
+      }
     }, 0);
   }
 
@@ -48,22 +48,22 @@ class KeyboardedInput extends React.Component {
   render() {
     return (
       <div>
-        <input 
+        <input
           name={this.props.name}
           className={this.props.className}
           placeholder={this.props.placeholder}
-	  value={this.props.value} 
-	  type={this.props.type} 
-	  onFocus={this.handleFocus} 
-	  onBlur={this.handleFocusLost} 
-	  min={this.props.min}
-	  max={this.props.max}
-	  step={this.props.step}
-	  pattern={this.props.pattern}
-	  onChange={this.handleChange}
-	  readOnly={this.props.readOnly === true ? true : false}
-	  ref="input" 
-	/>
+          value={this.props.value}
+          type={this.props.type}
+          onFocus={this.handleFocus}
+          onBlur={this.handleFocusLost}
+          min={this.props.min}
+          max={this.props.max}
+          step={this.props.step}
+          pattern={this.props.pattern}
+          onChange={this.handleChange}
+          readOnly={this.props.readOnly === true ? true : false}
+          ref="input"
+        />
         {this.state.showKeyboard && this.props.enabled && this.props.readOnly !== true &&
           <Keyboard
             hideKeyboard={this.hideKeyboard}
