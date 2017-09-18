@@ -30,6 +30,7 @@ class KeyboardedInput extends React.Component {
 
   handleFocus() {
     this.setState({...this.state, showKeyboard: true});
+    this.props.onFocus()
   }
 
   handleFocusLost(event) {
@@ -37,6 +38,7 @@ class KeyboardedInput extends React.Component {
     setTimeout(function(){
       if (!document.activeElement.classList.contains("keyboard-button") && !document.activeElement.classList.contains("keyboard") && !document.activeElement.classList.contains("keyboard-row")) {
         that.setState({...that.state, showKeyboard: false});
+        that.props.onBlur()
       }
     }, 0);
   }
