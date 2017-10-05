@@ -45,6 +45,7 @@ class KeyboardedInput extends React.Component {
 
   hideKeyboard() {
     this.setState({...this.state, showKeyboard: false});
+    this.props.onBlur();
   }
 
   render() {
